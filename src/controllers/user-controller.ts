@@ -4,7 +4,7 @@ import {
     UnauthorizedError,
 } from '../errors/api-errors';
 import UserModel from '../models/users';
-import { SignupData, IUserDocument, SignInData } from '../interfaces/userTypes';
+import { SignupData, IUserDocument, SignInData } from '../interfaces/user-interface';
 
 async function signUpUser(signupData: SignupData): Promise<IUserDocument> {
     try {
