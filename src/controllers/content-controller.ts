@@ -19,7 +19,6 @@ export async function createContent(
             tags,
             status,
             userId,
-            
         });
 
         const createdContent = await newContent.save();
@@ -34,9 +33,10 @@ export async function getContentById(
     res: Response,
 ): Promise<IContentDocument | null> {
     const contentId = req.params.id;
+    const userId = req.userId;
 
     try {
-        const content = await ContentModel.findById(contentId);
+        const content = await ContentModel.findOne({ _id: contentId, userId });
         return content;
     } catch (error) {
         throw error;
@@ -47,11 +47,12 @@ export async function updateContent(
     req: ExtendedRequest,
     res: Response,
 ): Promise<IContentDocument | null> {
+    const userId = req.userId;
     const contentId = req.params.id;
     const updateData = req.body;
 
     try {
-        const updatedContent = await ContentModel.findByIdAndUpdate(contentId, updateData, { new: true });
+        const updatedContent = await ContentModel.findOneAndUpdate({contentId, userId, updateData}, { new: true });
         return updatedContent;
     } catch (error) {
         throw error;
@@ -62,10 +63,11 @@ export async function deleteContent(
     req: ExtendedRequest,
     res: Response,
 ): Promise<{ message: string }> {
+    const userId = req.userId;
     const contentId = req.params.id;
 
     try {
-        const deletedContent = await ContentModel.findByIdAndDelete(contentId);
+        const deletedContent = await ContentModel.findOneAndDelete({_id: contentId, userId});
 
         if (!deletedContent) {
             return {
