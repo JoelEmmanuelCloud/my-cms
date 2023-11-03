@@ -1,18 +1,31 @@
-import IContent from "../interfaces/content-interface";
-import mongoose, { Schema } from 'mongoose';
-
-const ContentSchema = new Schema<IContent>({
-    title: { type: String, required: true },
-    content: { type: String, required: true },
-    published: { type: Boolean, default: false },
-    userId: {
-      type: String,
-      required: true,
-  },
-},
-{ timestamps: true },
+  import mongoose, { Schema, Model } from 'mongoose';
+  import { IContentDocument } from '../interfaces/content-interface';
+  
+  const ContentSchema: Schema<IContentDocument> = new Schema(
+      {
+          title: {
+              type: String,
+              required: [true, 'Please provide a description'],
+          },
+          content: {
+              type: String,
+              required: [true, 'Please provide the day of the week'],
+          },
+          published: {
+              type: Boolean,
+              default: false,
+          },
+          userId: {
+            type: String,
+            required: true,
+        },
+      },
+      { timestamps: true },
   );
   
-  const Content = mongoose.model<IContent>('Content', ContentSchema);
+  export interface IContentModel extends Model<IContentDocument> {}
   
-  export default Content;
+  export const EventModel: IContentModel = mongoose.model<
+      IContentDocument,
+      IContentModel
+  >('Content', ContentSchema);
