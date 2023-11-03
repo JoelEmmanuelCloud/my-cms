@@ -1,4 +1,4 @@
-import { Document, Types } from 'mongoose';
+import { Document } from 'mongoose';
 
 export interface Content {
     _id: string;
@@ -10,7 +10,6 @@ export interface Content {
     categories: string[];
     tags: string[];
     status: 'draft' | 'published';
-    author: Types.ObjectId;
 }
 
 export interface IContentDocument extends Document {
@@ -22,5 +21,4 @@ export interface IContentDocument extends Document {
     categories: string[];
     tags: string[];
     status: 'draft' | 'published';
-    author: Types.ObjectId; 
 }

@@ -27,10 +27,6 @@ const ContentSchema: Schema<IContentDocument> = new Schema(
       enum: ['draft', 'published'],
       default: 'draft',
     },
-    author: {
-      type: Schema.Types.ObjectId,
-      ref: 'User',
-    },
     
     },
   { timestamps: true },
