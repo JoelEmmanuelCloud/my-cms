@@ -1,31 +1,41 @@
-  import mongoose, { Schema, Model } from 'mongoose';
-  import { IContentDocument } from '../interfaces/content-interface';
-  
-  const ContentSchema: Schema<IContentDocument> = new Schema(
-      {
-          title: {
-              type: String,
-              required: [true, 'Please provide a description'],
-          },
-          content: {
-              type: String,
-              required: [true, 'Please provide the day of the week'],
-          },
-          published: {
-              type: Boolean,
-              default: false,
-          },
-          userId: {
-            type: String,
-            required: true,
-        },
-      },
-      { timestamps: true },
-  );
-  
-  export interface IContentModel extends Model<IContentDocument> {}
-  
-  export const EventModel: IContentModel = mongoose.model<
-      IContentDocument,
-      IContentModel
-  >('Content', ContentSchema);
+import mongoose, { Schema, Document, Model } from 'mongoose';
+import { IContentDocument  } from '../interfaces/content-interface';
+
+const ContentSchema: Schema<IContentDocument> = new Schema(
+  {
+    title: {
+      type: String,
+      required: [true, 'Please provide a title'],
+    },
+    body: {
+      type: String,
+      required: [true, 'Please provide the body content'],
+    },
+    slug: {
+      type: String,
+      required: [true, 'Please provide a unique slug'],
+      unique: true,
+    },
+    categories: [{
+      type: String,
+    }],
+    tags: [{
+      type: String,
+    }],
+    status: {
+      type: String,
+      enum: ['draft', 'published'],
+      default: 'draft',
+    },
+    author: {
+      type: Schema.Types.ObjectId,
+      ref: 'User',
+    },
+    
+    },
+  { timestamps: true },
+);
+
+export interface IContentModel extends Model<IContentDocument> {}
+
+export const ContentModel: IContentModel = mongoose.model<IContentDocument, IContentModel>('Content', ContentSchema);
