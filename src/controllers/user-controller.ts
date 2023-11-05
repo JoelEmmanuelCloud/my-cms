@@ -1,3 +1,4 @@
+import BlacklistedTokenModel from '../models/blacklistedTokens';
 import {
     BadRequestError,
     NotFoundError,
@@ -47,4 +48,20 @@ async function signInUser(signInData: SignInData): Promise<IUserDocument> {
     }
 }
 
-export { signUpUser, signInUser };
+
+async function logoutUser(userId: string, token: string): Promise<boolean> {
+    try {
+
+        const blacklistedToken = new BlacklistedTokenModel({ userId, token });
+        await blacklistedToken.save();
+
+        return true;
+    } catch (error) {
+        throw error;
+    }
+}
+
+export { signUpUser, signInUser, logoutUser };
+
+
+// export { signUpUser, signInUser };
