@@ -49,7 +49,7 @@ async function signInUser(signInData: SignInData): Promise<IUserDocument> {
 }
 
 
-async function logoutUser(userId: string, token: string): Promise<boolean> {
+async function signOutUser(userId: string, token: string): Promise<boolean> {
     try {
 
         const blacklistedToken = new BlacklistedTokenModel({ userId, token });
@@ -61,7 +61,4 @@ async function logoutUser(userId: string, token: string): Promise<boolean> {
     }
 }
 
-export { signUpUser, signInUser, logoutUser };
-
-
-// export { signUpUser, signInUser };
+export { signUpUser, signInUser, signOutUser };
