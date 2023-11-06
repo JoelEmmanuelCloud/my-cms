@@ -1,7 +1,10 @@
 import express from 'express';
+import connectDB from './db/connectDB';
+import userRouter from './routes/user-route';
+import notFoundMiddleware from './middleware/not-found';
+import errorHandlerMiddleware from './middleware/error-handler';
 import dotenv from 'dotenv';
 import morgan from 'morgan';
-import connectDB from './db/connectDB';
 
 dotenv.config();
 
@@ -9,6 +12,11 @@ const app = express();
 
 app.use(express.json());
 app.use(morgan('dev'));
+
+app.use('/api/v1/users', userRouter);
+
+app.use(notFoundMiddleware);
+app.use(errorHandlerMiddleware);
 
 
 

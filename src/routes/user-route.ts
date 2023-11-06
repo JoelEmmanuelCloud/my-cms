@@ -1,7 +1,7 @@
 import express from 'express';
 const router = express.Router();
 import { createJWT } from '../utils/jwt';
-import { signUpUser, signInUser } from '../controllers/user-controller';
+import { signUpUser, signInUser, signOutUser } from '../controllers/user-controller';
 import { signupSchema, signInSchema } from '../validators/user-validator';
 import { StatusCodes } from 'http-status-codes';
 
@@ -57,5 +57,24 @@ router.post('/sign-in', async (req, res) => {
         });
     }
 });
+
+
+router.post('/sign-out', async (req, res) => {
+    const { userId, token } = req.body;
+
+    try {
+        const success = await signOutUser(userId, token);
+
+        if (success) {
+            res.status(StatusCodes.OK).json({ message: 'signed out successful' });
+        } else {
+            res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ message: 'sign out failed' });
+        }
+    } catch (error) {
+        const errorMessage = (error as Error).message;
+        res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ message: errorMessage });
+    }
+});
+
 
 export default router;
