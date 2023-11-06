@@ -79,7 +79,7 @@ export async function updateContent(
     const updateData = req.body;
 
     try {
-        const updatedContent = await ContentModel.findOneAndUpdate({contentId, userId, updateData}, { new: true });
+        const updatedContent = await ContentModel.findOneAndUpdate({_id: contentId, userId: userId}, updateData, { new: true });
         return updatedContent;
     } catch (error) {
         throw error;
