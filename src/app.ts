@@ -1,6 +1,7 @@
 import express from 'express';
 import connectDB from './db/connectDB';
 import userRouter from './routes/user-route';
+import contentRouter from './routes/content-route';
 import notFoundMiddleware from './middleware/not-found';
 import errorHandlerMiddleware from './middleware/error-handler';
 import dotenv from 'dotenv';
@@ -14,6 +15,7 @@ app.use(express.json());
 app.use(morgan('dev'));
 
 app.use('/api/v1/users', userRouter);
+app.use('/api/v1/contents', contentRouter);
 
 app.use(notFoundMiddleware);
 app.use(errorHandlerMiddleware);
