@@ -27,6 +27,10 @@ const ContentSchema: Schema<IContentDocument> = new Schema(
       enum: ['draft', 'published'],
       default: 'draft',
     },
+    userId: {
+      type: String,
+      required: true,
+  },
     
     },
   { timestamps: true },
