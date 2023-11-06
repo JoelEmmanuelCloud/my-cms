@@ -4,7 +4,6 @@ export interface Content {
     _id: string;
     title: string;
     body: string;
-    published: boolean;
     userId: string;
     slug: string;
     categories: string[];
@@ -15,7 +14,6 @@ export interface Content {
 export interface IContentDocument extends Document {
     title: string;
     body: string;
-    published: boolean;
     userId: string;
     slug: string;
     categories: string[];

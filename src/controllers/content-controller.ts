@@ -1,6 +1,6 @@
 import { Response } from 'express';
 import { ContentModel } from '../models/contents'; 
-import { IContentDocument } from '../interfaces/content-interface';
+import { Content } from '../interfaces/content-interface';
 import { ExtendedRequest } from '../middleware/authenticateUser';
 
 
@@ -8,7 +8,7 @@ import { ExtendedRequest } from '../middleware/authenticateUser';
 export async function getAllContent(
     req: ExtendedRequest,
     res: Response,
-): Promise<IContentDocument[]> {
+): Promise<Content[]> {
     const userId = req.userId;
 
     try {
@@ -22,7 +22,7 @@ export async function getAllContent(
 export async function createContent(
     req: ExtendedRequest,
     res: Response,
-): Promise<IContentDocument> {
+): Promise<Content> {
     const { title, body, slug, categories, tags, status } = req.body;
     const userId = req.userId;
 
@@ -37,7 +37,18 @@ export async function createContent(
             userId,
         });
 
-        const createdContent = await newContent.save();
+        await newContent.save();
+
+        const createdContent: Content = {
+            _id: newContent._id,
+            title: newContent.title,
+            body: newContent.body,
+            slug: newContent.slug,
+            categories: newContent.categories,
+            tags: newContent.tags,
+            status: newContent.status,
+            userId: newContent.userId,
+        };
         return createdContent;
     } catch (error) {
         throw error;
@@ -47,7 +58,7 @@ export async function createContent(
 export async function getContentById(
     req: ExtendedRequest,
     res: Response,
-): Promise<IContentDocument | null> {
+): Promise<Content | null> {
     const contentId = req.params.id;
     const userId = req.userId;
 
@@ -62,7 +73,7 @@ export async function getContentById(
 export async function updateContent(
     req: ExtendedRequest,
     res: Response,
-): Promise<IContentDocument | null> {
+): Promise<Content | null> {
     const userId = req.userId;
     const contentId = req.params.id;
     const updateData = req.body;
