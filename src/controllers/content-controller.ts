@@ -3,6 +3,22 @@ import { ContentModel } from '../models/contents';
 import { IContentDocument } from '../interfaces/content-interface';
 import { ExtendedRequest } from '../middleware/authenticateUser';
 
+
+
+export async function getAllContent(
+    req: ExtendedRequest,
+    res: Response,
+): Promise<IContentDocument[]> {
+    const userId = req.userId;
+
+    try {
+        const allContent = await ContentModel.find({ userId });
+        return allContent;
+    } catch (error) {
+        throw error;
+    }
+}
+
 export async function createContent(
     req: ExtendedRequest,
     res: Response,
