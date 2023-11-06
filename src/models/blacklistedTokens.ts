@@ -7,10 +7,10 @@ interface IBlacklistedToken extends Document {
 }
 
 const BlacklistedTokenSchema: Schema = new Schema({
-    userId: {
-        type: String,
-        required: true,
-    },
+    // userId: {
+    //     type: String,
+    //     required: true,
+    // },
     token: {
         type: String,
         required: true,
