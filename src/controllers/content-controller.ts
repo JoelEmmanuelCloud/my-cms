@@ -2,8 +2,7 @@ import { Response } from 'express';
 import { ContentModel } from '../models/contents'; 
 import { Content } from '../interfaces/content-interface';
 import { ExtendedRequest } from '../middleware/authenticateUser';
-
-
+import { upload } from '../middleware/multerMiddleware'; // Importing the multer configuration
 
 export async function getAllContent(
     req: ExtendedRequest,
@@ -105,6 +104,22 @@ export async function deleteContent(
         return {
             message: `Content with ID ${contentId} has been deleted successfully.`,
         };
+    } catch (error) {
+        throw error;
+    }
+}
+
+
+
+export async function uploadImage(req: ExtendedRequest, res: Response) {
+    try {
+        
+        upload.single('image')(req, res, (err: any) => {
+            if (err) {
+                return res.status(400).json({ message: err.message });
+            }
+            res.status(200).json({ message: 'Image uploaded successfully' });
+        });
     } catch (error) {
         throw error;
     }
