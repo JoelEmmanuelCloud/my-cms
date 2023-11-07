@@ -5,7 +5,11 @@ import {
     UnauthorizedError,
 } from '../errors/api-errors';
 import UserModel from '../models/users';
-import { SignupData, IUserDocument, SignInData } from '../interfaces/user-interface';
+import {
+    SignupData,
+    IUserDocument,
+    SignInData,
+} from '../interfaces/user-interface';
 
 async function signUpUser(signupData: SignupData): Promise<IUserDocument> {
     try {
@@ -48,10 +52,8 @@ async function signInUser(signInData: SignInData): Promise<IUserDocument> {
     }
 }
 
-
 async function signOutUser(userId: string, token: string): Promise<boolean> {
     try {
-
         const blacklistedToken = new BlacklistedTokenModel({ userId, token });
         await blacklistedToken.save();
 

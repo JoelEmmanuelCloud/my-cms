@@ -5,14 +5,12 @@ type File = Express.Multer.File;
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        cb(null, '/public/uploads/'); 
+        cb(null, '/public/uploads/');
     },
     filename: function (req, file, cb) {
-        
         cb(null, new Date().toISOString() + '-' + file.originalname);
     },
 });
-
 
 const fileFilter = (req: Request, file: File, cb: FileFilterCallback) => {
     if (file.mimetype.startsWith('image/')) {

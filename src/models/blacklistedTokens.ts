@@ -18,10 +18,14 @@ const BlacklistedTokenSchema: Schema = new Schema({
     createdAt: {
         type: Date,
         default: Date.now,
-        expires: '1d'
+        expires: '1d',
     },
 });
 
-const BlacklistedTokenModel: Model<IBlacklistedToken> = mongoose.model<IBlacklistedToken>('BlacklistedToken', BlacklistedTokenSchema);
+const BlacklistedTokenModel: Model<IBlacklistedToken> =
+    mongoose.model<IBlacklistedToken>(
+        'BlacklistedToken',
+        BlacklistedTokenSchema,
+    );
 
 export default BlacklistedTokenModel;

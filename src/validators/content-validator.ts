@@ -1,6 +1,5 @@
 import Joi from 'joi';
 
-
 export const createContentSchema = Joi.object({
     title: Joi.string().required(),
     body: Joi.string().required(),

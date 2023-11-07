@@ -1,5 +1,5 @@
 import { Response } from 'express';
-import { ContentModel } from '../models/contents'; 
+import { ContentModel } from '../models/contents';
 import { Content } from '../interfaces/content-interface';
 import { ExtendedRequest } from '../middleware/authenticateUser';
 import { upload } from '../middleware/multerMiddleware'; // Importing the multer configuration
@@ -80,7 +80,11 @@ export async function updateContent(
     const updateData = req.body;
 
     try {
-        const updatedContent = await ContentModel.findOneAndUpdate({_id: contentId, userId: userId}, updateData, { new: true });
+        const updatedContent = await ContentModel.findOneAndUpdate(
+            { _id: contentId, userId: userId },
+            updateData,
+            { new: true },
+        );
         return updatedContent;
     } catch (error) {
         throw error;
@@ -95,7 +99,10 @@ export async function deleteContent(
     const contentId = req.params.id;
 
     try {
-        const deletedContent = await ContentModel.findOneAndDelete({_id: contentId, userId});
+        const deletedContent = await ContentModel.findOneAndDelete({
+            _id: contentId,
+            userId,
+        });
 
         if (!deletedContent) {
             return {
@@ -111,11 +118,8 @@ export async function deleteContent(
     }
 }
 
-
-
 export async function uploadImage(req: ExtendedRequest, res: Response) {
     try {
-        
         upload.single('image')(req, res, (err: any) => {
             if (err) {
                 return res.status(400).json({ message: err.message });

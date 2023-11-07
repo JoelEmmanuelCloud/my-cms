@@ -20,8 +20,6 @@ app.use('/api/v1/contents', contentRouter);
 app.use(notFoundMiddleware);
 app.use(errorHandlerMiddleware);
 
-
-
 const port = Number(process.env.PORT);
 
 const MONGO_URL = process.env.MONGO_URL as string;
