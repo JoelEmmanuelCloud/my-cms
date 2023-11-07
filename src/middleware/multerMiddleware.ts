@@ -1,25 +1,30 @@
-import multer from 'multer';
-import path from 'path';
+import { Request } from 'express';
+import multer, { FileFilterCallback } from 'multer';
+
+type File = Express.Multer.File;
 
 const storage = multer.diskStorage({
-    destination: (req, file, cb) => {
-        cb(null, path.join(__dirname, '../public/uploads/')); // Set the destination for uploaded files
+    destination: function (req, file, cb) {
+        cb(null, '../public/uploads/'); 
     },
-    filename: (req, file, cb) => {
-        cb(null, file.originalname); // Set the file name
+    filename: function (req, file, cb) {
+        
+        cb(null, new Date().toISOString() + '-' + file.originalname);
     },
 });
 
-export const upload = multer({
+
+const fileFilter = (req: Request, file: File, cb: FileFilterCallback) => {
+    if (file.mimetype.startsWith('image/')) {
+        cb(null, true);
+    } else {
+        cb(null, false);
+    }
+};
+
+const upload = multer({
     storage: storage,
-    limits: {
-        fileSize: 1024 * 1024, // Limit file size to 1MB
-    },
-    fileFilter: (req, file, cb) => {
-        if (file.mimetype.startsWith('image')) {
-            cb(null, true); // Accept only image files
-        } else {
-            cb(new Error('Please upload an image')); // Reject non-image files
-        }
-    },
-}).single('image');
+    fileFilter: fileFilter,
+});
+
+export { upload };
