@@ -22,7 +22,7 @@ export async function createContent(
     req: ExtendedRequest,
     res: Response,
 ): Promise<Content> {
-    const { title, body, slug, categories, tags, status } = req.body;
+    const { title, body, slug, categories, tags, status, image } = req.body;
     const userId = req.userId;
 
     try {
@@ -34,6 +34,7 @@ export async function createContent(
             tags,
             status,
             userId,
+            image,
         });
 
         await newContent.save();
@@ -47,6 +48,7 @@ export async function createContent(
             tags: newContent.tags,
             status: newContent.status,
             userId: newContent.userId,
+            image: newContent.image,
         };
         return createdContent;
     } catch (error) {

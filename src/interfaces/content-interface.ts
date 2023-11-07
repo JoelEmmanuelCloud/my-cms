@@ -9,6 +9,7 @@ export interface Content {
     categories: string[];
     tags: string[];
     status: 'draft' | 'published';
+    image: string;
 }
 
 export interface IContentDocument extends Document {
@@ -19,4 +20,5 @@ export interface IContentDocument extends Document {
     categories: string[];
     tags: string[];
     status: 'draft' | 'published';
+    image: string;
 }
