@@ -6,6 +6,7 @@ import {
     updateContent,
     deleteContent,
     getAllContent,
+    uploadImage,
 } from '../controllers/content-controller';
 import { createContentSchema, updateContentSchema } from '../validators/content-validator';
 import {
@@ -80,5 +81,14 @@ router.delete('/:id', authenticateUser,  async (req: ExtendedRequest, res) => {
         res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ message: errorMessage, });
     }
 });
+
+router.post('/upload', authenticateUser, async (req: ExtendedRequest, res) => {
+    try {
+        uploadImage(req, res);
+    } catch (error) {
+        const errorMessage = (error as Error).message;
+        res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ message: errorMessage });
+    }
+})
 
 export default router;
