@@ -1,5 +1,5 @@
 import mongoose, { Schema, Document, Model } from 'mongoose';
-import { IContentDocument  } from '../interfaces/content-interface';
+import { IContentDocument } from '../interfaces/content-interface';
 
 const ContentSchema: Schema<IContentDocument> = new Schema(
   {
@@ -30,9 +30,12 @@ const ContentSchema: Schema<IContentDocument> = new Schema(
     userId: {
       type: String,
       required: true,
-  },
-    
     },
+    image: {
+      type: String,
+      default: '/uploads/example.jpeg', 
+    },
+  },
   { timestamps: true },
 );
 
