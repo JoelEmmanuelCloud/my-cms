@@ -1,6 +1,6 @@
 import express from 'express';
 import connectDB from './db/connectDB';
-import userRouter from './routes/user-route';
+import userRouter from './routes/auth-route';
 import contentRouter from './routes/content-route';
 import notFoundMiddleware from './middleware/not-found';
 import errorHandlerMiddleware from './middleware/error-handler';
