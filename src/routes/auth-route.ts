@@ -50,6 +50,7 @@ router.post('/sign-in', async (req, res) => {
 
         res.status(StatusCodes.OK).json({
             token,
+            id: user._id,
             firstName: user.firstName,
             lastName: user.lastName,
             email: user.email,
