@@ -14,7 +14,7 @@ async function updateUserDetails(userId: string, updateData: IUser): Promise<IUs
         }
 
         Object.keys(updateData).forEach((key) => {
-            // @ts-ignore - Ignore for TypeScript: dynamically setting properties
+            // @ts-ignore
             user[key] = updateData[key];
         });
 
