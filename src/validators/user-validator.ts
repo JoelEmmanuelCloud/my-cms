@@ -19,4 +19,14 @@ const signInSchema = Joi.object({
     password: Joi.string().required(),
 });
 
-export { signupSchema, signInSchema };
+const updateUserSchema = Joi.object({
+    firstName: Joi.string().max(50).optional(),
+    lastName: Joi.string().max(50).optional(),
+    birthDate: Joi.string().optional(),
+    email: Joi.string().email().optional(),
+    password: Joi.string().min(6).optional(),
+});
+
+
+
+export { signupSchema, signInSchema, updateUserSchema };
