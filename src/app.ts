@@ -1,7 +1,8 @@
 import express from 'express';
 import connectDB from './db/connectDB';
-import userRouter from './routes/auth-route';
+import authRouter from './routes/auth-route';
 import contentRouter from './routes/content-route';
+import userRouter from './routes/user-route';
 import notFoundMiddleware from './middleware/not-found';
 import errorHandlerMiddleware from './middleware/error-handler';
 import dotenv from 'dotenv';
@@ -14,8 +15,9 @@ const app = express();
 app.use(express.json());
 app.use(morgan('dev'));
 
-app.use('/api/v1/users', userRouter);
+app.use('/api/v1/auth', authRouter);
 app.use('/api/v1/contents', contentRouter);
+app.use('/api/v1/users', userRouter);
 
 app.use(notFoundMiddleware);
 app.use(errorHandlerMiddleware);
