@@ -29,13 +29,20 @@ const UserSchema: Schema<IUserDocument> = new Schema(
             required: [true, 'Please provide email'],
             validate: {
                 validator: isEmailValidator,
-                message: 'Please provide valid email',
+                message: 'Please provide a valid email',
             },
         },
         password: {
             type: String,
             required: [true, 'Please provide password'],
             minlength: 6,
+        },
+
+        passwordResetToken: {
+            type: String,
+        },
+        passwordResetTokenExpiry: {
+            type: Date,
         },
     },
     { timestamps: true },
