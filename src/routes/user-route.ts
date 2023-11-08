@@ -3,8 +3,9 @@ const router = express.Router();
 import { updateUserDetails } from '../controllers/user-controller';
 import { updateUserSchema } from '../validators/user-validator';
 import { StatusCodes } from 'http-status-codes';
+import { authenticateUser } from '../middleware/authenticateUser';
 
-router.put('/:id', async (req, res) => {
+router.put('/:id',authenticateUser, async (req, res) => {
     const userId = req.params.id;
     const updateData = req.body;
 
