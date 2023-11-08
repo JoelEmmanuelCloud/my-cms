@@ -6,6 +6,8 @@ interface IUser extends Document {
     birthDate: string;
     email: string;
     password: string;
+    passwordResetToken?: string;
+    passwordResetTokenExpiry?: Date;
 }
 
 interface IUserDocument extends IUser, Document {
