@@ -1,11 +1,11 @@
-import {
-    BadRequestError,
-    NotFoundError,
-} from '../errors/api-errors';
+import { BadRequestError, NotFoundError } from '../errors/api-errors';
 import UserModel from '../models/users';
 import { IUser, IUserDocument } from '../interfaces/user-interface';
 
-async function updateUserDetails(userId: string, updateData: IUser): Promise<IUserDocument> {
+async function updateUserDetails(
+    userId: string,
+    updateData: IUser,
+): Promise<IUserDocument> {
     try {
         const user = await UserModel.findById(userId);
 

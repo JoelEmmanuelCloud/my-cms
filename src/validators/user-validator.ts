@@ -27,6 +27,4 @@ const updateUserSchema = Joi.object({
     password: Joi.string().min(6).optional(),
 });
 
-
-
 export { signupSchema, signInSchema, updateUserSchema };

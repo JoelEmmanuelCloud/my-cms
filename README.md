@@ -10,31 +10,31 @@ This CMS project offers a robust system for managing various types of content, i
 
 The project consists of various controllers handling specific functionalities:
 
-- **Auth Controller**: Manages user authentication, including sign up, sign in, and sign out functionalities.
-- **Content Controller**: Handles CRUD operations for content creation, retrieval, update, and deletion.
-- **User Controller**: Manages user details and profile updates.
-- **Password Reset Controller**: Facilitates password reset functionality through email communication.
+-   **Auth Controller**: Manages user authentication, including sign up, sign in, and sign out functionalities.
+-   **Content Controller**: Handles CRUD operations for content creation, retrieval, update, and deletion.
+-   **User Controller**: Manages user details and profile updates.
+-   **Password Reset Controller**: Facilitates password reset functionality through email communication.
 
 ## Technologies Used
 
 The CMS is built using the following technologies:
 
-- Node.js
-- Express.js
--TypeScript
-- Joi (Input validation)
-- Prettier/ESLint (Code formatting and linting)
-- MongoDB (assumed based on the use of Mongoose models)
-- Nodemailer (for email communication)
-- Multer (for handling file uploads)
-- JWT (for token-based authentication)
+-   Node.js
+-   Express.js
+    -TypeScript
+-   Joi (Input validation)
+-   Prettier/ESLint (Code formatting and linting)
+-   MongoDB (assumed based on the use of Mongoose models)
+-   Nodemailer (for email communication)
+-   Multer (for handling file uploads)
+-   JWT (for token-based authentication)
 
 ## Setup and Installation
 
 1. **Clone the repository**
 
-   ```bash
-   git clone https://github.com/JoelEmmanuelCloud/my-cms.git
+    ```bash
+    git clone https://github.com/JoelEmmanuelCloud/my-cms.git
     ```
 
 ## Install dependencies
@@ -74,25 +74,25 @@ The CMS offers various endpoints and functionalities through the controllers:
 
 ## Auth Controller
 
-- **POST /sign-up** - Register a new user.
-- **POST /sign-in** - Authenticate and sign in a user.
-- **POST /sign-out** - Log out a user.
+-   **POST /sign-up** - Register a new user.
+-   **POST /sign-in** - Authenticate and sign in a user.
+-   **POST /sign-out** - Log out a user.
 
 ## Content Controller
 
-- **GET /content** - Retrieve all content for a user.
-- **POST /content** - Create new content.
-- **GET /content/:id** - Get a specific content by ID.
-- **PUT /content/:id** - Update content by ID.
-- **DELETE /content/:id** - Delete content by ID.
+-   **GET /content** - Retrieve all content for a user.
+-   **POST /content** - Create new content.
+-   **GET /content/:id** - Get a specific content by ID.
+-   **PUT /content/:id** - Update content by ID.
+-   **DELETE /content/:id** - Delete content by ID.
 
 ## User Controller
 
-- **PUT /user/:id** - Update user details.
+-   **PUT /user/:id** - Update user details.
 
 ## Password Reset Controller
 
-- **POST /password-reset** - Request a password reset via email.
+-   **POST /password-reset** - Request a password reset via email.
 
 ## Author
 

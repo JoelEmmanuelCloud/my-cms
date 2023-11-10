@@ -8,7 +8,9 @@ router.post('/', async (req: Request, res: Response) => {
 
     try {
         if (!email) {
-            res.status(400).json({ message: 'Email is required for password reset' });
+            res.status(400).json({
+                message: 'Email is required for password reset',
+            });
             return;
         }
 
