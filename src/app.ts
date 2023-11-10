@@ -19,7 +19,7 @@ app.use(morgan('dev'));
 app.use('/api/v1/auth', authRouter);
 app.use('/api/v1/contents', contentRouter);
 app.use('/api/v1/users', userRouter);
-app.use('/api/v1/passwordReset', passwordResetRouter);
+app.use('/api/v1/password-reset', passwordResetRouter);
 
 app.use(notFoundMiddleware);
 app.use(errorHandlerMiddleware);
